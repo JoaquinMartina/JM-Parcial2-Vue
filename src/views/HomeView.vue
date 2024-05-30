@@ -1,18 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <CreateVideogame title="Nuevo Videojuego" />
+    <ListVideogames title="Videojuegos" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import CreateVideogame from "@/components/CreateVideogame.vue";
+import ListVideogames from "@/components/ListVideogames.vue";
 
 export default {
   name: "HomeView",
   components: {
-    HelloWorld,
+    CreateVideogame,
+    ListVideogames,
   },
 };
 </script>
+
+<style scoped>
+.home {
+  height: auto;
+  display: flex;
+  background-color: rgb(197, 197, 197);
+}
+</style>

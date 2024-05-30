@@ -1,9 +1,12 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/"><img src="./assets/GameZoneLogo.png" /></router-link>
   </nav>
   <router-view />
+  <footer>
+    <router-link to="/">Home</router-link> |
+    <router-link to="/about">About</router-link>
+  </footer>
 </template>
 
 <style>
@@ -16,7 +19,17 @@
 }
 
 nav {
-  padding: 30px;
+  background-color: #51a39f;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+}
+
+img {
+  width: 150px;
 }
 
 nav a {
@@ -26,5 +39,14 @@ nav a {
 
 nav a.router-link-exact-active {
   color: #42b983;
+}
+
+footer {
+  height: 150px;
+  background-color: #51a39f;
+  padding: 30px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
 }
 </style>
