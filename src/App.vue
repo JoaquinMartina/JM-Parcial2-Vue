@@ -1,11 +1,14 @@
 <template>
   <nav>
-    <router-link to="/"><img src="./assets/GamerZoneLogo.png" /></router-link>
+    <router-link to="/">
+      <img class="imgHeader" src="./assets/GamerZoneLogo.png" />
+    </router-link>
   </nav>
   <router-view />
   <footer>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <a href="https://github.com/JoaquinMartina/JM-Parcial2-Vue" target="_blank">
+      <img class="imgFooter" src="./assets/GitHub.png" alt="GitHub" />
+    </a>
   </footer>
 </template>
 
@@ -26,8 +29,12 @@ nav {
   align-items: center;
 }
 
-img {
+.imgHeader {
   width: 200px;
+}
+
+.imgFooter {
+  width: 150px;
 }
 
 nav a {
@@ -43,8 +50,6 @@ footer {
   height: 150px;
   background-color: #51a39f;
   padding: 30px;
-  display: flex;
-  flex-direction: row;
   text-align: center;
 }
 </style>
