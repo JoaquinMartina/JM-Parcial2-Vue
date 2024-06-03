@@ -5,16 +5,14 @@
         <CreateVideogame @add-game="addGame" title="Nuevo Videojuego" />
       </div>
       <div class="col">
-        <div class="row">
-          <ListVideogames
-            :game-list="gameList"
-            @game-detail="gameDetail"
-            title="Videojuegos"
-          />
-        </div>
+        <ListVideogames
+          :game-list="gameList"
+          @game-detail="gameDetail"
+          title="Videojuegos"
+        />
       </div>
     </div>
-    <div v-if="game !== null" class="row">
+    <div v-if="game !== null">
       <GameDetails :game-selected="game" @clear-game="clearGame" />
     </div>
   </div>
@@ -51,11 +49,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-.home {
-  height: auto;
-  display: flex;
-  background-color: rgb(197, 197, 197);
-}
-</style>
