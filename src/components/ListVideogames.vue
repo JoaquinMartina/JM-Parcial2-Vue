@@ -1,6 +1,14 @@
 <template>
   <div class="divList">
     <h1>{{ title }}</h1>
+    <div class="divSearch">
+      <input
+        class="form-control"
+        type="text"
+        v-model="buscar"
+        placeholder="Buscar por nombre, plataforma o estado"
+      />
+    </div>
     <div v-if="gameList.length == 0" class="alert alert-info" role="alert">
       <p>No hay Videojuegos para mostrar</p>
     </div>
@@ -13,7 +21,7 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr v-for="game in gameList" :key="game.id" @click="selectItem(game)">
+        <tr v-for="game in games" :key="game.id" @click="selectItem(game)">
           <td>{{ game.nombre }}</td>
           <td>{{ game.plataforma }}</td>
           <td>{{ game.estado }}</td>
@@ -37,11 +45,23 @@ export default {
   data() {
     return {
       fields: ["Nombre", "Plataforma", "Estado", "Puntaje"],
+      buscar: "",
     };
   },
   methods: {
     selectItem(game) {
       this.$emit("game-detail", game);
+    },
+  },
+  computed: {
+    games() {
+      return this.gameList.filter((item) => {
+        return (
+          item.nombre.toLowerCase().includes(this.buscar.toLowerCase()) ||
+          item.plataforma.toLowerCase().includes(this.buscar.toLowerCase()) ||
+          item.estado.toLowerCase().includes(this.buscar.toLowerCase())
+        );
+      });
     },
   },
 };
@@ -58,25 +78,7 @@ h1 {
   border: 2px solid white;
   border-radius: 5px;
 }
-.inputText {
-  display: inline-block;
-  width: 100%;
-  padding: 10px;
-  margin: 10px;
-  border: none;
-  border-radius: 5px;
-  background-color: rgb(253, 236, 255);
-}
-.btnRegistrar {
-  color: white;
-  background-color: rgb(22, 68, 82);
-  text-align: center;
-  font-size: medium;
-  text-transform: uppercase;
-  font-weight: bold;
-  margin: 10px;
-  padding: 10px;
-  width: auto;
-  border: none;
+.divSearch {
+  margin-bottom: 20px;
 }
 </style>

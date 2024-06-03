@@ -1,15 +1,12 @@
 <template>
   <div class="container text-center">
     <div class="row">
-      <GameSearch @game-search="gameSearch" />
-    </div>
-    <div class="row">
       <div class="col">
         <CreateVideogame @add-game="addGame" title="Nuevo Videojuego" />
       </div>
       <div class="col">
         <div v-if="game !== null" class="row">
-          <GameDetails :gameSelected="game" @clear-game="clearGame" />
+          <GameDetails :game-selected="game" @clear-game="clearGame" />
         </div>
         <ListVideogames
           :game-list="gameList"
@@ -22,7 +19,6 @@
 </template>
 
 <script>
-import GameSearch from "@/components/GameSearch.vue";
 import CreateVideogame from "@/components/CreateVideogame.vue";
 import ListVideogames from "@/components/ListVideogames.vue";
 import GameDetails from "@/components/GameDetails.vue";
@@ -31,7 +27,6 @@ import GameDetails from "@/components/GameDetails.vue";
 export default {
   name: "HomeView",
   components: {
-    GameSearch,
     CreateVideogame,
     ListVideogames,
     GameDetails,
@@ -50,7 +45,6 @@ export default {
     gameDetail(gameDetail) {
       this.game = gameDetail;
     },
-    gameSearch() {},
     clearGame() {
       this.game = null;
     },

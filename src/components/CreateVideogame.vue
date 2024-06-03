@@ -89,8 +89,8 @@ export default {
         this.errorsForm.push("El puntaje debe ser como máximo 10");
       }
       if (
-        this.puntaje !== null &&
-        Number.isFinite(parseInt(this.puntaje)) == false
+        Number.isFinite(parseInt(this.puntaje)) == false &&
+        this.puntaje !== null
       ) {
         this.errorsForm.push("El puntaje debe ser numérico");
       }
@@ -110,10 +110,10 @@ export default {
 
       this.$emit("add-game", newGame);
 
-      this.nombre = "";
-      this.plataforma = "";
-      this.estado = "";
-      this.puntaje = "";
+      this.nombre = null;
+      this.plataforma = null;
+      this.estado = null;
+      this.puntaje = null;
     },
   },
 };
