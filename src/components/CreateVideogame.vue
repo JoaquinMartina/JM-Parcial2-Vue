@@ -143,7 +143,6 @@ p {
 }
 .inputText {
   padding: 10px;
-  margin: 10px;
   border: 1px solid gray;
   border-radius: 5px;
   background-color: white;
