@@ -73,7 +73,8 @@ h1 {
 }
 .divList {
   padding: 20px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: rgb(245, 245, 245);
   border: 2px solid white;
   border-radius: 5px;

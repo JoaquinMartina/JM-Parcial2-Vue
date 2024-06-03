@@ -82,17 +82,18 @@ export default {
       if (this.estado === null) {
         this.errorsForm.push("Debe seleccionar el estado");
       }
-      if (this.puntaje !== null && this.puntaje < 1) {
-        this.errorsForm.push("El puntaje debe ser como mínimo 1");
-      }
-      if (this.puntaje !== null && this.puntaje > 10) {
-        this.errorsForm.push("El puntaje debe ser como máximo 10");
-      }
       if (
         Number.isFinite(parseInt(this.puntaje)) == false &&
-        this.puntaje !== null
+        (this.puntaje !== null || this.puntaje == "")
       ) {
+        this.puntaje = null;
         this.errorsForm.push("El puntaje debe ser numérico");
+      } else if (this.puntaje !== null && this.puntaje < 1) {
+        this.puntaje = null;
+        this.errorsForm.push("El puntaje debe ser como mínimo 1");
+      } else if (this.puntaje !== null && this.puntaje > 10) {
+        this.puntaje = null;
+        this.errorsForm.push("El puntaje debe ser como máximo 10");
       }
     },
     addGame() {
@@ -134,7 +135,8 @@ p {
 }
 .divCreate {
   padding: 20px;
-  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background-color: rgb(245, 245, 245);
   border: 2px solid white;
   border-radius: 5px;

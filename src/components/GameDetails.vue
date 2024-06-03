@@ -1,5 +1,5 @@
 <template>
-  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <div class="alert alert-primary alert-dismissible fade show" role="alert">
     <h2>{{ gameSelected.nombre }}</h2>
     <p>
       Plataforma: <strong>{{ gameSelected.plataforma }}</strong>
@@ -40,5 +40,8 @@ export default {
 <style scoped>
 p {
   text-align: left;
+}
+.alert {
+  margin: 15px;
 }
 </style>

@@ -5,15 +5,17 @@
         <CreateVideogame @add-game="addGame" title="Nuevo Videojuego" />
       </div>
       <div class="col">
-        <div v-if="game !== null" class="row">
-          <GameDetails :game-selected="game" @clear-game="clearGame" />
+        <div class="row">
+          <ListVideogames
+            :game-list="gameList"
+            @game-detail="gameDetail"
+            title="Videojuegos"
+          />
         </div>
-        <ListVideogames
-          :game-list="gameList"
-          @game-detail="gameDetail"
-          title="Videojuegos"
-        />
       </div>
+    </div>
+    <div v-if="game !== null" class="row">
+      <GameDetails :game-selected="game" @clear-game="clearGame" />
     </div>
   </div>
 </template>
@@ -22,7 +24,6 @@
 import CreateVideogame from "@/components/CreateVideogame.vue";
 import ListVideogames from "@/components/ListVideogames.vue";
 import GameDetails from "@/components/GameDetails.vue";
-//import GameDetailsModal from "@/components/GameDetailsModal.vue";
 
 export default {
   name: "HomeView",
@@ -30,7 +31,6 @@ export default {
     CreateVideogame,
     ListVideogames,
     GameDetails,
-    //GameDetailsModal,
   },
   data() {
     return {
