@@ -1,22 +1,56 @@
 <template>
   <div class="divCreate">
     <h1>{{ title }}</h1>
-    <form class="create">
-      <input class="inputText" type="text" placeholder="Nombre" />
-      <label>Plataforma</label>
-      <select>
-        <option value="pc">PC</option>
-        <option value="pst">PlayStation</option>
-        <option value="xbox">Xbox One</option>
-      </select>
-      <label>Estado</label>
-      <select>
-        <option value="pendiente">Pendiente</option>
-        <option value="jugando">Jugando</option>
-        <option value="completadp">Completado</option>
-      </select>
-      <input class="inputText" type="text" placeholder="Puntaje" /><br />
-      <input class="btnRegistrar" type="submit" value="Registrar Videojuego" />
+    <div class="alert alert-danger" v-if="errorsForm.length !== 0">
+      <ul>
+        <li v-for="error in errorsForm" :key="error">
+          <p>{{ error }}</p>
+        </li>
+      </ul>
+    </div>
+    <form @submit.prevent="addGame" class="">
+      <div class="row mb-4">
+        <label class="col-sm-3 col-form-label">Nombre</label>
+        <div class="col-sm-8">
+          <input class="form-control" type="text" v-model="nombre" />
+        </div>
+      </div>
+      <div class="row mb-4">
+        <label class="col-sm-3 col-form-label">Plataforma</label>
+        <div class="col-sm-5">
+          <select class="form-select" v-model="plataforma">
+            <option value="PC">PC</option>
+            <option value="PlayStation">PlayStation</option>
+            <option value="Xbox One">Xbox One</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <label class="col-sm-3 col-form-label">Estado</label>
+        <div class="col-sm-5">
+          <select class="form-select" v-model="estado">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Jugando">Jugando</option>
+            <option value="Completado">Completado</option>
+          </select>
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Puntaje</label>
+        <div class="col-sm-4">
+          <input class="form-control" type="text" v-model="puntaje" />
+        </div>
+      </div>
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label"></label>
+        <div class="col-sm-8">
+          <input
+            class="btnRegistrar"
+            type="submit"
+            value="Registrar Videojuego"
+          />
+        </div>
+      </div>
     </form>
   </div>
 </template>
@@ -27,6 +61,61 @@ export default {
   props: {
     title: String,
   },
+  data() {
+    return {
+      nombre: null,
+      plataforma: null,
+      estado: null,
+      puntaje: null,
+      games: [],
+      errorsForm: [],
+    };
+  },
+  methods: {
+    validateForm() {
+      if (this.nombre === null) {
+        this.errorsForm.push("Debe ingresar un nombre");
+      }
+      if (this.plataforma === null) {
+        this.errorsForm.push("Debe elegir la plataforma");
+      }
+      if (this.estado === null) {
+        this.errorsForm.push("Debe seleccionar el estado");
+      }
+      if (this.puntaje !== null && this.puntaje < 1) {
+        this.errorsForm.push("El puntaje debe ser como mínimo 1");
+      }
+      if (this.puntaje !== null && this.puntaje > 10) {
+        this.errorsForm.push("El puntaje debe ser como máximo 10");
+      }
+      if (
+        this.puntaje !== null &&
+        Number.isFinite(parseInt(this.puntaje)) == false
+      ) {
+        this.errorsForm.push("El puntaje debe ser numérico");
+      }
+    },
+    addGame() {
+      this.errorsForm = [];
+      this.validateForm();
+      if (this.errorsForm.length !== 0) {
+        return;
+      }
+      const newGame = {
+        nombre: this.nombre,
+        plataforma: this.plataforma,
+        estado: this.estado,
+        puntaje: this.puntaje,
+      };
+
+      this.$emit("add-game", newGame);
+
+      this.nombre = "";
+      this.plataforma = "";
+      this.estado = "";
+      this.puntaje = "";
+    },
+  },
 };
 </script>
 
@@ -35,40 +124,22 @@ h1 {
   font-weight: bold;
 }
 label {
-  display: inline-block;
   text-align: left;
-  padding: 10px;
-  margin: 10px;
-  width: 100px;
 }
-select {
-  display: inline-block;
-  flex-direction: row;
-  margin: 10px;
-  padding: 5px;
-  width: 110px;
-  border-radius: 10px;
-  border: 1px solid gray;
+form {
+  margin: 30px;
+}
+p {
+  text-align: left;
 }
 .divCreate {
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  width: 500px;
-  border-radius: 5px;
   padding: 20px;
   margin: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
   background-color: rgb(245, 245, 245);
   border: 2px solid white;
-}
-.create {
-  padding: 20px;
+  border-radius: 5px;
 }
 .inputText {
-  display: inline-block;
-  width: 250px;
   padding: 10px;
   margin: 10px;
   border: 1px solid gray;
@@ -82,9 +153,9 @@ select {
   font-size: medium;
   text-transform: uppercase;
   font-weight: bold;
-  margin: 10px;
   padding: 10px;
-  width: 250px;
+  width: 100%;
   border: none;
+  border-radius: 5px;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <router-link to="/"><img src="./assets/GameZoneLogo.png" /></router-link>
+    <router-link to="/"><img src="./assets/GamerZoneLogo.png" /></router-link>
   </nav>
   <router-view />
   <footer>
@@ -14,22 +14,20 @@
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
 nav {
   background-color: #51a39f;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
+  padding-left: 40px;
   display: flex;
   flex-direction: row;
-  text-align: center;
   align-items: center;
 }
 
 img {
-  width: 150px;
+  width: 200px;
 }
 
 nav a {

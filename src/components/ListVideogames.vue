@@ -1,7 +1,10 @@
 <template>
   <div class="divList">
     <h1>{{ title }}</h1>
-    <table class="table table-striped table-hover">
+    <div v-if="gameList.length == 0" class="alert alert-info" role="alert">
+      <p>No hay Videojuegos para mostrar</p>
+    </div>
+    <table v-if="gameList.length != 0" class="table table-striped table-hover">
       <thead>
         <tr>
           <th v-for="field in fields" :key="field.id">
@@ -10,11 +13,11 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr v-for="item in items" :key="item.id">
-          <td>{{ item.first_name }}</td>
-          <td>{{ item.last_name }}</td>
-          <td>{{ item.age }}</td>
-          <td>5</td>
+        <tr v-for="game in gameList" :key="game.id" @click="selectItem(game)">
+          <td>{{ game.nombre }}</td>
+          <td>{{ game.plataforma }}</td>
+          <td>{{ game.estado }}</td>
+          <td>{{ game.puntaje }}</td>
         </tr>
       </tbody>
     </table>
@@ -26,37 +29,20 @@ export default {
   name: "ListVideogames",
   props: {
     title: String,
+    gameList: {
+      type: Array,
+      required: true,
+    },
   },
   data() {
     return {
-      fields: ["first_name", "last_name", "age"],
-      items: [
-        {
-          isActive: true,
-          age: 40,
-          first_name: "Dickerson",
-          last_name: "Macdonald",
-        },
-        {
-          isActive: false,
-          age: 21,
-          first_name: "Larsen",
-          last_name: "Shaw",
-        },
-        {
-          isActive: false,
-          age: 89,
-          first_name: "Geneva",
-          last_name: "Wilson",
-        },
-        {
-          isActive: true,
-          age: 38,
-          first_name: "Jami",
-          last_name: "Carney",
-        },
-      ],
+      fields: ["Nombre", "Plataforma", "Estado", "Puntaje"],
     };
+  },
+  methods: {
+    selectItem(game) {
+      this.$emit("game-detail", game);
+    },
   },
 };
 </script>
@@ -66,17 +52,11 @@ h1 {
   font-weight: bold;
 }
 .divList {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  border-radius: 5px;
   padding: 20px;
   margin: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  background-color: rgb(197, 197, 197);
+  background-color: rgb(245, 245, 245);
   border: 2px solid white;
+  border-radius: 5px;
 }
 .inputText {
   display: inline-block;
