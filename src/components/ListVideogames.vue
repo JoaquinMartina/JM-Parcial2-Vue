@@ -23,7 +23,7 @@
       <tbody class="table-group-divider">
         <tr
           v-for="game in games"
-          :key="game.id"
+          :key="game.nombre"
           @click="selectItem(game)"
           data-bs-toggle="modal"
           data-bs-target="#gameDetails"
@@ -35,37 +35,6 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div
-    v-if="this.gameSelected !== null"
-    class="modal fade"
-    id="gameDetails"
-    aria-hidden="true"
-  >
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5">{{ this.gameSelected.nombre }}</h1>
-          <button
-            type="button"
-            class="btn-close"
-            data-bs-dismiss="modal"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div class="modal-body">
-          <p>
-            Plataforma: <strong>{{ this.gameSelected.plataforma }}</strong>
-          </p>
-          <p>
-            Estado: <strong>{{ this.gameSelected.estado }}</strong>
-          </p>
-          <p>
-            Puntaje: <strong>{{ this.gameSelected.puntaje }}</strong>
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
@@ -83,13 +52,11 @@ export default {
     return {
       fields: ["Nombre", "Plataforma", "Estado", "Puntaje"],
       buscar: "",
-      gameSelected: null,
     };
   },
   methods: {
     selectItem(game) {
       this.$emit("game-detail", game);
-      this.gameSelected = game;
     },
   },
   computed: {

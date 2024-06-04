@@ -3,7 +3,7 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5">Nombre</h1>
+          <h1 class="modal-title fs-5">{{ gameSelected.nombre }}</h1>
           <button
             type="button"
             class="btn-close"
@@ -11,7 +11,17 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body"></div>
+        <div class="modal-body">
+          <p>
+            Plataforma: <strong>{{ gameSelected.plataforma }}</strong>
+          </p>
+          <p>
+            Estado: <strong>{{ gameSelected.estado }}</strong>
+          </p>
+          <p>
+            Puntaje: <strong>{{ gameSelected.puntaje }}</strong>
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -28,3 +38,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+h1 {
+  font-weight: bold;
+}
+p {
+  text-align: left;
+}
+</style>
