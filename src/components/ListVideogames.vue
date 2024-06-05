@@ -21,7 +21,13 @@
         </tr>
       </thead>
       <tbody class="table-group-divider">
-        <tr v-for="game in games" :key="game.id" @click="selectItem(game)">
+        <tr
+          v-for="game in games"
+          :key="game.nombre"
+          @click="selectItem(game)"
+          data-bs-toggle="modal"
+          data-bs-target="#gameDetails"
+        >
           <td>{{ game.nombre }}</td>
           <td>{{ game.plataforma }}</td>
           <td>{{ game.estado }}</td>
@@ -81,5 +87,8 @@ h1 {
 }
 .divSearch {
   margin-bottom: 20px;
+}
+p {
+  text-align: left;
 }
 </style>

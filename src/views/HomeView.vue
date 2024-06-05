@@ -13,7 +13,7 @@
       </div>
     </div>
     <div v-if="game !== null">
-      <GameDetails :game-selected="game" @clear-game="clearGame" />
+      <GameDetailsModal :game-selected="game" />
     </div>
   </div>
 </template>
@@ -21,19 +21,19 @@
 <script>
 import CreateVideogame from "@/components/CreateVideogame.vue";
 import ListVideogames from "@/components/ListVideogames.vue";
-import GameDetails from "@/components/GameDetails.vue";
+import GameDetailsModal from "@/components/GameDetailsModal.vue";
 
 export default {
   name: "HomeView",
   components: {
     CreateVideogame,
     ListVideogames,
-    GameDetails,
+    GameDetailsModal,
   },
   data() {
     return {
       gameList: [],
-      game: null,
+      game: {},
     };
   },
   methods: {
