@@ -13,9 +13,6 @@
       </div>
     </div>
     <div v-if="game !== null">
-      <GameDetails :game-selected="game" @clear-game="clearGame" />
-    </div>
-    <div v-if="game !== null">
       <GameDetailsModal :game-selected="game" />
     </div>
   </div>
@@ -24,7 +21,6 @@
 <script>
 import CreateVideogame from "@/components/CreateVideogame.vue";
 import ListVideogames from "@/components/ListVideogames.vue";
-import GameDetails from "@/components/GameDetails.vue";
 import GameDetailsModal from "@/components/GameDetailsModal.vue";
 
 export default {
@@ -32,13 +28,12 @@ export default {
   components: {
     CreateVideogame,
     ListVideogames,
-    GameDetails,
     GameDetailsModal,
   },
   data() {
     return {
       gameList: [],
-      game: null,
+      game: {},
     };
   },
   methods: {
