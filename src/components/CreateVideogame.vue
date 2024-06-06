@@ -1,7 +1,7 @@
 <template>
-  <div class="divCreate">
+  <div class="divCreate shadow-lg p-3 mb-5 bg-body-tertiary rounded">
     <h1>{{ title }}</h1>
-    <div class="alert alert-danger" v-if="errorsForm.length !== 0">
+    <div class="alert alert-danger" v-if="errorsForm.length">
       <ul>
         <li v-for="error in errorsForm" :key="error">
           <p>{{ error }}</p>

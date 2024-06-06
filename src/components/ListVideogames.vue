@@ -1,5 +1,5 @@
 <template>
-  <div class="divList">
+  <div class="divList shadow-lg p-3 mb-5 bg-body-tertiary rounded">
     <h1>{{ title }}</h1>
     <div class="divSearch">
       <input
@@ -12,29 +12,34 @@
     <div v-if="gameList.length == 0" class="alert alert-info" role="alert">
       <p>No hay Videojuegos para mostrar</p>
     </div>
-    <table v-if="gameList.length != 0" class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th v-for="field in fields" :key="field.id">
-            {{ field }}
-          </th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        <tr
-          v-for="game in games"
-          :key="game.nombre"
-          @click="selectItem(game)"
-          data-bs-toggle="modal"
-          data-bs-target="#gameDetails"
-        >
-          <td>{{ game.nombre }}</td>
-          <td>{{ game.plataforma }}</td>
-          <td>{{ game.estado }}</td>
-          <td>{{ game.puntaje }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="collapse1">
+      <table
+        v-if="gameList.length"
+        class="table table-striped table-hover table-borderless"
+      >
+        <thead>
+          <tr>
+            <th v-for="field in fields" :key="field.id">
+              {{ field }}
+            </th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr
+            v-for="game in games"
+            :key="game.nombre"
+            @click="selectItem(game)"
+            data-bs-toggle="modal"
+            data-bs-target="#gameDetails"
+          >
+            <td>{{ game.nombre }}</td>
+            <td>{{ game.plataforma }}</td>
+            <td>{{ game.estado }}</td>
+            <td>{{ game.puntaje }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -88,7 +93,8 @@ h1 {
 .divSearch {
   margin-bottom: 20px;
 }
-p {
-  text-align: left;
+.collapse1 {
+  overflow-y: scroll;
+  height: 200px;
 }
 </style>
