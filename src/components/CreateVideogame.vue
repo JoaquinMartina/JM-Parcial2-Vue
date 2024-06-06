@@ -1,7 +1,7 @@
 <template>
-  <div class="divCreate">
+  <div class="divCreate shadow-lg p-3 mb-5 bg-body-tertiary rounded">
     <h1>{{ title }}</h1>
-    <div class="alert alert-danger" v-if="errorsForm.length !== 0">
+    <div class="alert alert-danger" v-if="errorsForm.length">
       <ul>
         <li v-for="error in errorsForm" :key="error">
           <p>{{ error }}</p>
@@ -135,11 +135,7 @@ p {
 }
 .divCreate {
   padding: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: rgb(245, 245, 245);
-  border: 2px solid white;
-  border-radius: 5px;
+  margin-top: 20px;
 }
 .inputText {
   padding: 10px;

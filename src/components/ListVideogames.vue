@@ -1,5 +1,5 @@
 <template>
-  <div class="divList">
+  <div class="divList shadow-lg p-3 mb-5 bg-body-tertiary rounded">
     <h1>{{ title }}</h1>
     <div class="divSearch">
       <input
@@ -9,32 +9,37 @@
         placeholder="Buscar por nombre, plataforma o estado"
       />
     </div>
-    <div v-if="gameList.length == 0" class="alert alert-info" role="alert">
+    <div v-if="!gameList.length" class="alert alert-info" role="alert">
       <p>No hay Videojuegos para mostrar</p>
     </div>
-    <table v-if="gameList.length != 0" class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th v-for="field in fields" :key="field.id">
-            {{ field }}
-          </th>
-        </tr>
-      </thead>
-      <tbody class="table-group-divider">
-        <tr
-          v-for="game in games"
-          :key="game.nombre"
-          @click="selectItem(game)"
-          data-bs-toggle="modal"
-          data-bs-target="#gameDetails"
-        >
-          <td>{{ game.nombre }}</td>
-          <td>{{ game.plataforma }}</td>
-          <td>{{ game.estado }}</td>
-          <td>{{ game.puntaje }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="collapseTable">
+      <table
+        v-if="gameList.length"
+        class="table table-striped table-hover table-borderless"
+      >
+        <thead>
+          <tr>
+            <th v-for="field in fields" :key="field.id">
+              {{ field }}
+            </th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr
+            v-for="game in games"
+            :key="game.nombre"
+            @click="selectItem(game)"
+            data-bs-toggle="modal"
+            data-bs-target="#gameDetails"
+          >
+            <td>{{ game.nombre }}</td>
+            <td>{{ game.plataforma }}</td>
+            <td>{{ game.estado }}</td>
+            <td>{{ game.puntaje }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -79,16 +84,21 @@ h1 {
 }
 .divList {
   padding: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: rgb(245, 245, 245);
-  border: 2px solid white;
-  border-radius: 5px;
+  margin-top: 20px;
+  max-height: auto;
 }
 .divSearch {
   margin-bottom: 20px;
 }
-p {
-  text-align: left;
+.collapseTable {
+  overflow-y: scroll;
+  max-height: 280px;
+}
+thead,
+th {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
 }
 </style>
