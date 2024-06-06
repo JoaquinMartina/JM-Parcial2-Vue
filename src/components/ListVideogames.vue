@@ -9,10 +9,10 @@
         placeholder="Buscar por nombre, plataforma o estado"
       />
     </div>
-    <div v-if="gameList.length == 0" class="alert alert-info" role="alert">
+    <div v-if="!gameList.length" class="alert alert-info" role="alert">
       <p>No hay Videojuegos para mostrar</p>
     </div>
-    <div class="collapse1">
+    <div class="collapseTable">
       <table
         v-if="gameList.length"
         class="table table-striped table-hover table-borderless"
@@ -84,17 +84,21 @@ h1 {
 }
 .divList {
   padding: 20px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  background-color: rgb(245, 245, 245);
-  border: 2px solid white;
-  border-radius: 5px;
+  margin-top: 20px;
+  max-height: auto;
 }
 .divSearch {
   margin-bottom: 20px;
 }
-.collapse1 {
+.collapseTable {
   overflow-y: scroll;
-  height: 200px;
+  max-height: 280px;
+}
+thead,
+th {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 1;
 }
 </style>

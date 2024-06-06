@@ -27,6 +27,9 @@ nav {
   display: flex;
   flex-direction: row;
   align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .imgHeader {
